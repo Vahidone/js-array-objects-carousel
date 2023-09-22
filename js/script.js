@@ -1,10 +1,3 @@
-const photos = [
-  'img/01.webp',
-  'img/02.webp',
-  'img/03.webp',
-  'img/04.webp',
-  'img/05.webp'
-];
 
 
 const btnNext = document.getElementById('btn-t');
@@ -13,8 +6,29 @@ const itemsWrap = document.querySelector('.items-wrapper');
 
 
 
-
-
+const photos = [
+  {
+      image: 'img/01.webp',
+      title: 'Marvel\'s Spiderman Miles Morale',
+      text: 'Experience the rise of Miles Morales as the new hero masters incredible, explosive new powers to become his own Spider-Man.',
+  }, {
+      image: 'img/02.webp',
+      title: 'Ratchet & Clank: Rift Apart',
+      text: 'Go dimension-hopping with Ratchet and Clank as they take on an evil emperor from another reality.',
+  }, {
+      image: 'img/03.webp',
+      title: 'Fortnite',
+      text: "Grab all of your friends and drop into Epic Games Fortnite, a massive 100 - player face - off that combines looting, crafting, shootouts and chaos.",
+  }, {
+      image: 'img/04.webp',
+      title: 'Stray',
+      text: 'Lost, injured and alone, a stray cat must untangle an ancient mystery to escape a long-forgotten city',
+  }, {
+      image: 'img/05.webp',
+      title: "Marvel's Avengers",
+      text: 'Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.',
+  }
+];
 
 // reset 
 itemsWrap.innerHTML = '';
@@ -24,11 +38,27 @@ itemsWrap.innerHTML = '';
 
 let counterImg = 0;
 
-for (let i = 0; i < photos.length; i++) {
-  const photo = photos[i];
-  itemsWrap.innerHTML += `<img src="${photo}" class="item hide">`;
+photos.forEach((photo) => {
+
+
+ 
+  itemsWrap.innerHTML += `
+ 
+  <div class="img-space item">
+
+    <img src="${photo.image}">
+
+    <div class="text-space">
+      <h2 class="title">${photo.title}</h2>
+
+      <p class="text">${photo.text}</p>
+    </div>
+
+  </div>
+
+  `;
   
-}
+});
 
 const itemCollection = document.getElementsByClassName('item');
 const thumbCollection = document.getElementsByClassName('thumb');
