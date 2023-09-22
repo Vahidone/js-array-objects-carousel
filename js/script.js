@@ -91,3 +91,35 @@ btnNext.addEventListener('click', function () {
   }
 });
 
+// Botton prev
+btnPrev.addEventListener('click', function () {
+  if (reverseDirection) {
+    // Inverti la direzione
+    itemCollection[counterImg].classList.add('hide');
+    thumbCollection[counterImg].classList.remove('active');
+
+    counterImg++;
+
+    if (counterImg === itemCollection.length) {
+      counterImg = 0;
+    }
+
+    itemCollection[counterImg].classList.remove('hide');
+    thumbCollection[counterImg].classList.add('active');
+    btnNext.classList.remove('hide');
+  } else {
+    // Normale direzione
+    itemCollection[counterImg].classList.add('hide');
+    thumbCollection[counterImg].classList.remove('active');
+
+    counterImg--;
+
+    if (counterImg < 0) {
+      counterImg = itemCollection.length - 1;
+    }
+
+    itemCollection[counterImg].classList.remove('hide');
+    thumbCollection[counterImg].classList.add('active');
+    btnNext.classList.remove('hide');
+  }
+});
