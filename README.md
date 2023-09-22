@@ -10,7 +10,17 @@
 
 
 
-#### Bonus 1:
+#### Bonus 1: Sperimentiamo attraverso l’uso delle timing functions anche una funzionalità di scorrimento al nostro carosello:al click di un bottone o già dall’inizio possiamo far partire, ad intervalli di tempo a piacere, lo scorrimento delle immagini disponibili nel carosello stesso.
+
+1. Aggiungere un bottone in html.
+2. Creare una nuova variabile per il nuovo bottone in Javascript.
+3. Aggiungere un gestore degli eventi al bottone per invertire la direzione del carosello.
+4. Modificare il codice JavaScript per tener traccia della direzione del carosello attraverso una variabile booleana come ad esempio 'reverseDirection'.
+5. Modificare il gestore degli eventi del bottone "Next" per gestire sia la direzione normale che l'inversione.
+6. Modificare il gestore degli eventi del bottone "Prev" in modo simile per gestire sia la direzione normale che l'inversione.
+7. 
+
+
 
 
 #### Bonus 2:
