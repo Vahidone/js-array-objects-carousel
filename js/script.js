@@ -146,3 +146,20 @@ btnPrev.addEventListener('click', function () {
     btnNext.classList.remove('hide');
   }
 });
+
+
+
+// soluzione bonus 1 
+
+let autoScrollInterval;
+
+function startAutoScroll() {
+
+  
+  autoScrollInterval = setInterval(function () {
+    
+  }, 3000); 
+}
+
+
+startAutoScroll();
