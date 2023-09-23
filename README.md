@@ -10,7 +10,18 @@
 
 
 
+
+
 #### Bonus 1: Sperimentiamo attraverso l’uso delle timing functions anche una funzionalità di scorrimento al nostro carosello:al click di un bottone o già dall’inizio possiamo far partire, ad intervalli di tempo a piacere, lo scorrimento delle immagini disponibili nel carosello stesso.
+
+1. Definire una variabile per memorizzare l'intervallo dell'autoscroll.
+2. Utilizzare "setInterval" per eseguire una determinata funzione a intervalli di tempo a piacere.
+All'interno della funzione utilizzare la logica esistente per il "Next" e "Prev" per cambiare l'immagine attiva in base alla direzione desiderata.
+3. Chiamare la funzione (fare subito dopo aver dichiarato la funzione) per avviare lo scorrimento automatico. 
+
+
+
+
 
 #### Bonus 2: E se volessi un bottone per invertire la “direzione” del carosello?
 
