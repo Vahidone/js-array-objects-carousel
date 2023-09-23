@@ -54,130 +54,22 @@ const thumbCollection = document.getElementsByClassName("thumb");
 
 // ...
 
-// Nascondo immagini all'inizio
+//  Nascondo immagini all'inizio
 for (let i = 0; i < itemCollection.length; i++) {
   itemCollection[i].classList.add("hide");
 }
 
-// Le mostro solo la prima immagine
+// Mostro solo la prima immagine
 itemCollection[0].classList.remove("hide");
 thumbCollection[0].classList.add("active");
 
-
-
-// soluzione per il bonus 3
-
-for (let i = 0; i < thumbCollection.length; i++) {
-  thumbCollection[i].addEventListener("click", function () {
-    const clickedIndex = i;
-
-    // Nascondo l'immagine attualmente attiva
-    itemCollection[counterImg].classList.add("hide");
-    thumbCollection[counterImg].classList.remove("active");
-
-    // Mostro l'immagine cliccata
-    counterImg = clickedIndex;
-    itemCollection[counterImg].classList.remove("hide");
-    thumbCollection[counterImg].classList.add("active");
-  });
-}
-
-//  Bonus 2 
-
-//  Aggiunto il gestore degli eventi per il bottone "Inverti Direzione"
-btnReverse.addEventListener("click", function () {
-  reverseDirection = !reverseDirection;
-});
-
-// Botton next
-btnNext.addEventListener("click", function () {
-  if (reverseDirection) {
-    // Inverti la direzione
-    itemCollection[counterImg].classList.add("hide");
-    thumbCollection[counterImg].classList.remove("active");
-
-
-    counterImg++;
-
-    if (counterImg === itemCollection.length) {
-      counterImg = 0;
-    }
-    
-
-    itemCollection[counterImg].classList.remove("hide");
-    thumbCollection[counterImg].classList.add("active");
-    btnPrev.classList.remove("hide");
-  } else {
-    // Normale direzione
-    itemCollection[counterImg].classList.add("hide");
-    thumbCollection[counterImg].classList.remove("active");
-
-    counterImg--;
-
-    if (counterImg < 0) {
-      counterImg = itemCollection.length - 1;
-    }
-
-    itemCollection[counterImg].classList.remove("hide");
-    thumbCollection[counterImg].classList.add("active");
-    btnPrev.classList.remove("hide");
-  }
-});
-
-// Botton prev
-btnPrev.addEventListener("click", function () {
-  if (reverseDirection) {
-    // Inverti la direzione
-    itemCollection[counterImg].classList.add("hide");
-    thumbCollection[counterImg].classList.remove("active");
-
-    counterImg++;
-
-    if (counterImg === itemCollection.length) {
-      counterImg = 0;
-    }
-
-    itemCollection[counterImg].classList.remove("hide");
-    thumbCollection[counterImg].classList.add("active");
-    btnNext.classList.remove("hide");
-  } else {
-    // Normale direzione
-    itemCollection[counterImg].classList.add("hide");
-    thumbCollection[counterImg].classList.remove("active");
-
-    counterImg--;
-
-    if (counterImg < 0) {
-      counterImg = itemCollection.length - 1;
-    }
-
-    itemCollection[counterImg].classList.remove("hide");
-    thumbCollection[counterImg].classList.add("active");
-    btnNext.classList.remove("hide");
-  }
-});
-
-// soluzione bonus 1
-
+// Funzione per avviare l'auto-scroll
 let autoScrollInterval;
 
 function startAutoScroll() {
   autoScrollInterval = setInterval(function () {
-    if (reverseDirection) {
-      // Scorrimento inverso
-      itemCollection[counterImg].classList.add("hide");
-      thumbCollection[counterImg].classList.remove("active");
-
-      counterImg--;
-
-      if (counterImg < 0) {
-        counterImg = itemCollection.length - 1;
-      }
-
-      itemCollection[counterImg].classList.remove("hide");
-      thumbCollection[counterImg].classList.add("active");
-    } else {
-      // Scorrimento normale
+    if (!reverseDirection) {
+      // dirtezione normale
       itemCollection[counterImg].classList.add("hide");
       thumbCollection[counterImg].classList.remove("active");
 
@@ -186,12 +78,66 @@ function startAutoScroll() {
       if (counterImg === itemCollection.length) {
         counterImg = 0;
       }
+    } else {
+      // dirtezione inversa
+      itemCollection[counterImg].classList.add("hide");
+      thumbCollection[counterImg].classList.remove("active");
 
-      itemCollection[counterImg].classList.remove("hide");
-      thumbCollection[counterImg].classList.add("active");
+      counterImg--;
+
+      if (counterImg < 0) {
+        counterImg = itemCollection.length - 1;
+      }
     }
+
+   
+    itemCollection[counterImg].classList.remove("hide");
+    thumbCollection[counterImg].classList.add("active");
   }, 3000);
 }
 
-
+// Avvia l'auto-scroll iniziale
 startAutoScroll();
+
+
+for (let i = 0; i < thumbCollection.length; i++) {
+  thumbCollection[i].addEventListener("click", function () {
+    // Nascondi l'immagine attualmente attiva
+    itemCollection[counterImg].classList.add("hide");
+    thumbCollection[counterImg].classList.remove("active");
+
+   
+    counterImg = i;
+    itemCollection[counterImg].classList.remove("hide");
+    thumbCollection[counterImg].classList.add("active");
+
+    
+    reverseDirection = i < counterImg;
+    autoScrollInterval && clearInterval(autoScrollInterval); 
+    startAutoScroll(); 
+  });
+}
+
+// Botton next
+btnNext.addEventListener("click", function () {
+  reverseDirection = false; // Imposto la direzione a normale
+  autoScrollInterval && clearInterval(autoScrollInterval); // Cancello l'auto-scroll
+  startAutoScroll(); // Riavvio l'auto-scroll
+
+  
+  thumbCollection[counterImg].classList.remove("active");
+  counterImg = (counterImg + 1) % itemCollection.length;
+  thumbCollection[counterImg].classList.add("active");
+});
+
+// Botton prev
+btnPrev.addEventListener("click", function () {
+  reverseDirection = true; // Imposto la direzione a inversa
+  autoScrollInterval && clearInterval(autoScrollInterval); // Cancello l'auto-scroll
+  startAutoScroll(); // Riavvio l'auto-scroll
+
+  
+  thumbCollection[counterImg].classList.remove("active");
+  counterImg = (counterImg - 1 + itemCollection.length) % itemCollection.length;
+  thumbCollection[counterImg].classList.add("active");
+});
