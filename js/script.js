@@ -155,6 +155,33 @@ let autoScrollInterval;
 
 function startAutoScroll() {
 
+  if (reverseDirection) {
+    // Scorrimento inverso
+    itemCollection[counterImg].classList.add('hide');
+    thumbCollection[counterImg].classList.remove('active');
+
+    counterImg--;
+
+    if (counterImg < 0) {
+      counterImg = itemCollection.length - 1;
+    }
+
+    itemCollection[counterImg].classList.remove('hide');
+    thumbCollection[counterImg].classList.add('active');
+  } else {
+    // Scorrimento normale
+    itemCollection[counterImg].classList.add('hide');
+    thumbCollection[counterImg].classList.remove('active');
+
+    counterImg++;
+
+    if (counterImg === itemCollection.length) {
+      counterImg = 0;
+    }
+
+    itemCollection[counterImg].classList.remove('hide');
+    thumbCollection[counterImg].classList.add('active');
+  }
   
   autoScrollInterval = setInterval(function () {
     
@@ -162,4 +189,4 @@ function startAutoScroll() {
 }
 
 
-startAutoScroll();
+
