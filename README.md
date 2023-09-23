@@ -10,6 +10,8 @@
 
 
 
+#### Bonus 1: Sperimentiamo attraverso l’uso delle timing functions anche una funzionalità di scorrimento al nostro carosello:al click di un bottone o già dall’inizio possiamo far partire, ad intervalli di tempo a piacere, lo scorrimento delle immagini disponibili nel carosello stesso.
+
 #### Bonus 2: E se volessi un bottone per invertire la “direzione” del carosello?
 
 1. Aggiungere un bottone in html.
@@ -23,7 +25,9 @@
 
 
 
-#### Bonus 2:
+#### Bonus 3: Al click della thumb cambia l’immagine attiva
 
-
-#### Bonus 3:
+1. Fare un ciclo per scorrere l'array di "thumbCollection".
+2. Aggiungere un addEventListener al click di ogni "thumb" nell'array thumbCollection.
+3. Creare l'indice della 'thumb' cliccata.
+4. Utilizzare l'indice clickedIndex per nascondere l'immagine attiva e mostrare l'immagine corrispondente nell'array itemCollection.
