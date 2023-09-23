@@ -53,7 +53,30 @@ const thumbCollection = document.getElementsByClassName('thumb');
 itemCollection[0].classList.remove('hide');
 thumbCollection[0].classList.add('active');
 
-// Aggiunto il gestore degli eventi per il bottone "Inverti Direzione"
+
+
+
+// soluzione per il bonus 3 
+
+for (let i = 0; i < thumbCollection.length; i++) {
+  thumbCollection[i].addEventListener('click', function () {
+    const clickedIndex = i;
+
+    // Nascondo l'immagine attualmente attiva
+    itemCollection[counterImg].classList.add('hide');
+    thumbCollection[counterImg].classList.remove('active');
+
+    // Mostro l'immagine cliccata
+    counterImg = clickedIndex;
+    itemCollection[counterImg].classList.remove('hide');
+    thumbCollection[counterImg].classList.add('active');
+  });
+}
+
+
+
+
+//  Aggiunto il gestore degli eventi per il bottone "Inverti Direzione"
 btnReverse.addEventListener('click', function () {
   reverseDirection = !reverseDirection;
 });
