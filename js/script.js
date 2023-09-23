@@ -188,5 +188,9 @@ function startAutoScroll() {
   }, 3000); 
 }
 
+startAutoScroll();
+
+
+
 
 
